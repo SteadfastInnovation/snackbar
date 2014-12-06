@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.williammora.sample.snackbar.SnackbarSampleActivity">
+    tools:context="com.nispok.sample.snackbar.SnackbarSampleActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,16 +44,34 @@
             android:text="No animation" />
 
         <Button
-            android:id="@+id/dismiss_listener"
+            android:id="@+id/event_listener"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dismiss Listener" />
+            android:text="Event Listener" />
 
         <Button
             android:id="@+id/custom_colors"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Custom colors" />
+
+        <Button
+            android:id="@+id/unswipeable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unswipeable" />
+
+        <Button
+            android:id="@+id/list_example"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ListView Listener" />
+
+        <Button
+            android:id="@+id/recycler_example"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="RecyclerView Listener" />
 
     </LinearLayout>
 </ScrollView>

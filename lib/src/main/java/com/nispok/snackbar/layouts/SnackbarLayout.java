@@ -1,4 +1,4 @@
-package com.williammora.snackbar;
+package com.nispok.snackbar.layouts;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -46,4 +46,5 @@ public class SnackbarLayout extends LinearLayout {
         mMaxHeight = maxHeight;
         requestLayout();
     }
+
 }
