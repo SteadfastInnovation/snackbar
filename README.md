@@ -14,7 +14,7 @@ Works on API levels >= 8
 You can import the library from source as a module or grab via Gradle:
  <br />
  ```groovy
- compile 'com.nispok:snackbar:2.4.0'
+ compile 'com.nispok:snackbar:2.5.0'
  ```
 ## Usage
 <br />
@@ -46,14 +46,26 @@ Snackbar.with(getApplicationContext()) // context
     .text("This will do something when dismissed") // text to display
     .eventListener(new EventListener() {
         @Override
-        public void onShow(int height) {
-           myFloatingActionButton.moveUp(height);
-        }        
-        @Override
-        public void onDismiss(int height) {
-           myFloatingActionButton.moveDown(height);
+        public void onShow(Snackbar snackbar) {
+            myFloatingActionButton.moveUp(snackbar.getHeight());
         }
-    }) // Snackbar's DismissListener
+        @Override
+        public void onShown(Snackbar snackbar) {
+            Log.i(TAG, String.format("Snackbar shown. Width: %d Height: %d Offset: %d",
+                    snackbar.getWidth(), snackbar.getHeight(),
+                    snackbar.getOffset()));
+        }
+        @Override
+        public void onDismiss(Snackbar snackbar) {
+            myFloatingActionButton.moveDown(snackbar.getHeight());
+        }
+        @Override
+        public void onDismissed(Snackbar snackbar) {
+            Log.i(TAG, String.format("Snackbar dismissed. Width: %d Height: %d Offset: %d",
+                                snackbar.getWidth(), snackbar.getHeight(),
+                                snackbar.getOffset()));
+        }
+    }) // Snackbar's EventListener
     .show(this); // activity where it is displayed
 ```
 There are two <code>Snackbar</code> types: single-line (default) and multi-line (2 lines max). You can also set the duration of the <code>Snackbar</code> similar to a <a href="http://developer.android.com/reference/android/widget/Toast.html"><code>Toast</code></a>. Animation disabling is also possible.
@@ -104,19 +116,25 @@ Snackbar.with(SnackbarSampleActivity.this) // context
     .swipeToDismiss(false) // disable swipe-to-dismiss functionality
     .show(this); // activity where it is displayed
 ```
-If you would like to add features to it or report any bugs, refer to the [issues](https://github.com/nispok/snackbar/issues) section.<br /><br />
 
 # Who's using Snackbar?
-If you are using this library and would like to be mentioned here, open a PR or tell us via [email](mailto:contact@nispok.com).
+If you are using this library and would like to be mentioned here, open a [PR](https://github.com/nispok/snackbar/pulls) or tell us via [email](mailto:contact@nispok.com).
 
 # Examples
 There's a sample app included in the project. [SnackbarSampleActivity](./sample/src/main/java/com/nispok/sample/snackbar/SnackbarSampleActivity.java) is where you want to start.
+
+# Contributing
+If you would like to add features or report any bugs, open a [PR](https://github.com/nispok/snackbar/pulls) or refer to the [issues](https://github.com/nispok/snackbar/issues) section.
 
 # Contributors
 + [William Mora](https://github.com/wmora) - [@_williammora](https://twitter.com/_williammora)
 + [Lewis Deane](https://github.com/lewisjdeane)
 + [Andrew Hughes](https://github.com/ashughes)
 + [David Richardson](https://github.com/davidjrichardson)
++ [Juan Ramón González](https://github.com/jrgonzalezg)
 
-## License
+# License
 [MIT](./LICENSE)
+
+# ChangeLog
+Go to the [releases](https://github.com/nispok/snackbar/releases) section for a brief description of each release.
