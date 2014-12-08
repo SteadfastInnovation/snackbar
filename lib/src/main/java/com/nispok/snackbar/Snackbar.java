@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
+import android.support.annotation.AnimRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
@@ -581,6 +582,12 @@ public class Snackbar extends SnackbarLayout {
         return mText;
     }
 
+    /**
+     * @return the duration for the in and the out animations
+     * @deprecated get this duration from the animation resource itself. see
+     * {@link #getInAnimationResource()} and {@link #getOutAnimationResource()}
+     */
+    @Deprecated
     public long getAnimationDuration() {
         return getResources().getInteger(R.integer.animation_duration);
     }
@@ -594,10 +601,8 @@ public class Snackbar extends SnackbarLayout {
     }
 
     /**
-     * Returns the pixel offset of this {@link com.nispok.snackbar.Snackbar} from the left and
+     * @return the pixel offset of this {@link com.nispok.snackbar.Snackbar} from the left and
      * bottom of the {@link android.app.Activity}.
-     *
-     * @return
      */
     public int getOffset() {
         return mOffset;
@@ -612,20 +617,34 @@ public class Snackbar extends SnackbarLayout {
     }
 
     /**
-     * Returns whether this {@link com.nispok.snackbar.Snackbar} is currently showing
-     *
-     * @return
+     * @return true if this {@link com.nispok.snackbar.Snackbar} is currently showing
      */
     public boolean isShowing() {
         return mIsShowing;
     }
 
     /**
-     * Returns whether this {@link com.nispok.snackbar.Snackbar} has been dismissed
-     *
-     * @return
+     * @return false if this {@link com.nispok.snackbar.Snackbar} has been dismissed
      */
     public boolean isDismissed() {
         return !mIsShowing;
+    }
+
+    /**
+     * @return the animation resource used by this {@link com.nispok.snackbar.Snackbar} instance
+     * to enter the view
+     */
+    @AnimRes
+    public static int getInAnimationResource() {
+        return R.anim.snackbar_in;
+    }
+
+    /**
+     * @return the animation resource used by this {@link com.nispok.snackbar.Snackbar} instance
+     * to exit the view
+     */
+    @AnimRes
+    public static int getOutAnimationResource() {
+        return R.anim.snackbar_out;
     }
 }
